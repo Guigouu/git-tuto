@@ -8,7 +8,7 @@ https://git-scm.com/book
 
 Git stores and thinks about information in a very different way, and understanding these differences will help you avoid becoming confused while using it.
 
-Snaphots, not differences:
+##### Snaphots, not differences:
 
 ![delta](./images/deltas.png)
 Storing data as changes to a base version of each file
@@ -20,18 +20,20 @@ It is tipycally a *stream of snapshot*. Very effecient !
 Storing data as snapshots of the project over time
 
 
-Every Operation Is Local:
+##### Every Operation Is Local:
 
-"""
+```
 git clone git@github.com:Guigouu/git-tuto.git
-"""
+```
 
 You have the entire history of the project right there on your local disk, most operations seem almost instantaneous.
 
 So to Browse history of the entire project, git doesn not need to go out to the server.
 Same for the most operations, if you are in a airplane environment you can commit locally and push later. 
 
-Git Has Integrity:
+##### Git Has Integrity:
 
 Everything in Git in checksummed before it is stored and is then referred to by that checksum. 
 ![snpashots](/images/git-log.png)
+
+This means it’s impossible to change the contents of any file or directory without Git knowing about it. This functionality is built into Git at the lowest levels and is integral to its philosophy. You can’t lose information in transit or get file corruption without Git being able to detect it.
