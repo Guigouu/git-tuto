@@ -319,7 +319,14 @@ git log --pretty="%h - %s" --author='Guillaume NAIRI' --since="2022-08-01" --no-
 At any stage, you may want to undo something. 
 One of the common undos takes place when you commit too early and possibly forget to add some files, or you mess up your commit message. If you want to redo that commit, make the additional changes you forgot, stage them, and commit again using the --amend option:
 
-
 ```
 git commit --amend
 ```
+As an example, if you commit and then realize you forgot to stage the changes in a file you wanted to add to this commit, you can do something like this:
+```
+$ git commit -m 'Initial commit'
+$ git add forgotten_file
+$ git commit --amend
+```
+
+/!\ It will not replace the commit already pushed, but you end up with a single commit — the second commit replaces the results of the first.
