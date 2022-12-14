@@ -97,8 +97,46 @@ Changes not staged for commit:
 ```
 $ git status -s
  M README
-MM Rakefile
 A  lib/git.rb
 M  lib/simplegit.rb
 ?? LICENSE.txt
 ```
+- New files that aren’t tracked have a ?? next to them
+- New files that have been added to the staging area have an A
+- Modified files have an M and so on. 
+
+##### Ignoring Files
+```
+$ cat .gitignore
+# Compiled files
+*.tfstate
+*.tfstate.backup
+
+# Module directory
+.terraform/
+connection.tf
+terraform.tfvars
+.idea
+.vscode
+```
+- Blank lines or lines starting with # are ignored.
+
+- Standard glob patterns work, and will be applied recursively throughout the entire working tree.
+
+- You can start patterns with a forward slash (/) to avoid recursivity.
+
+- You can end patterns with a forward slash (/) to specify a directory.
+
+- You can negate a pattern by starting it with an exclamation point (!).
+
+
+###### Tip:
+GitHub maintains a fairly comprehensive list of good .gitignore file examples for dozens of projects and languages at https://github.com/github/gitignore if you want a starting point for your project.
+
+
+##### Viewing Your Staged and Unstaged Changes
+If the git status command is too vague for you — you want to know exactly what you changed, not just which files were changed — you can use the git diff command.
+
+![gitdiff](/images/git-diff.png)
+
+That command compares what is in your working directory with what is in your staging area. The result tells you the changes you’ve made that you haven’t yet staged.
