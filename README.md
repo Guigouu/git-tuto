@@ -1,6 +1,6 @@
 # git-tuto
 
-This project resum the most important information from git book. 
+This project resum important informations from git book. 
 https://git-scm.com/book
 ## Git scenariis 
 ### What is Git ?
@@ -65,7 +65,7 @@ Untracked basically means that Git sees a file you didn’t have in the previous
 ```
 $ git add README
 ```
-##### Staging Modified Files
+### Staging Modified Files
 ```
 $ git status
 On branch master
@@ -92,7 +92,7 @@ Changes not staged for commit:
     modified:   README
 ```
 
-##### Short Status
+### Short Status
 
 ```
 $ git status -s
@@ -105,7 +105,7 @@ M  lib/simplegit.rb
 - New files that have been added to the staging area have an A
 - Modified files have an M and so on. 
 
-##### Ignoring Files
+### Ignoring Files
 ```
 $ cat .gitignore
 # Compiled files
@@ -134,14 +134,14 @@ terraform.tfvars
 GitHub maintains a fairly comprehensive list of good .gitignore file examples for dozens of projects and languages at https://github.com/github/gitignore if you want a starting point for your project.
 
 
-##### Viewing Your Staged and Unstaged Changes
+### Viewing Your Staged and Unstaged Changes
 If the git status command is too vague for you — you want to know exactly what you changed, not just which files were changed — you can use the git diff command.
 
 ![gitdiff](/images/git-diff.PNG)
 
 That command compares what is in your working directory with what is in your staging area. The result tells you the changes you’ve made that you haven’t yet staged.
 
-##### Committing Your Changes
+### Committing Your Changes
 Now that your staging area is set up the way you want it, you can commit your changes. 
 
 Remember that anything that is still unstaged — any files you have created or modified that you haven’t run git add on since you edited them — won’t go into this commit.
@@ -154,7 +154,7 @@ Alternatively, you can type your commit message inline with the commit command b
 $ git commit -m "Story 182: fix terraform stack"
 ```
 
-##### Skipping the Staging Area
+### Skipping the Staging Area
 
 ```
 $ git commit -a -m 'Add new benchmar
@@ -165,7 +165,7 @@ Adding the -a option to the git commit command makes Git automatically stage eve
 /!\ This is convenient, but be careful; sometimes this flag will cause you to include unwanted changes.
 
 
-##### Removing Files
+### Removing Files
 
 To remove a file from Git, you have to remove it from your tracked files and then commit. 
 If you simply remove the file from your working directory, it shows up under the “Changes not staged for commit” (that is, unstaged) area of your git status output:
@@ -204,7 +204,7 @@ if you forgot to add something to your .gitignore file and accidentally staged i
 ```
 $ git rm --cached README
 ```
-##### Moving Files
+### Moving Files
 
 ```
 $ git mv README.md README
@@ -223,7 +223,7 @@ $ git rm README.md
 $ git add README
 ```
 
-#### Viewing the Commit History
+### Viewing the Commit History
 ```
 $ git clone https://github.com/schacon/simplegit-progit
 ```
@@ -306,7 +306,7 @@ git log --pretty=format:"%h - %an, %ar : %s"
 ```
 git log --pretty=format:"%h %s" --graph
 ```
-##### Limiting Log Output
+### Limiting Log Output
 
 ```
 git log --since=2.weeks
@@ -315,7 +315,7 @@ git log --since=2.weeks
 git log --pretty="%h - %s" --author='Guillaume NAIRI' --since="2022-08-01" --no-merges
 ```
 
-#### Git Basics - Undoing Things
+### Git Basics - Undoing Things
 At any stage, you may want to undo something. 
 One of the common undos takes place when you commit too early and possibly forget to add some files, or you mess up your commit message. If you want to redo that commit, make the additional changes you forgot, stage them, and commit again using the --amend option:
 
@@ -329,4 +329,53 @@ $ git add forgotten_file
 $ git commit --amend
 ```
 
-/!\ It will not replace the commit already pushed, but you end up with a single commit — the second commit replaces the results of the first.
+/!\ It will not replace the commit already pushed, but you end up with a single commit — the second commit replaces the results of the first if it is staged locally.
+```
+git log -p -1
+```
+
+
+### Unstaging a Staged File
+
+
+You accidentally type git add * and you wanted commit two files separatly:
+
+```
+$ git add *
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    renamed:    README.md -> README
+    modified:   CONTRIBUTING.md
+```
+
+```
+echo "MY modification to UNDO" > UNDO.md
+git add UNDO.md
+git status -s
+A UNDO.md
+```
+
+```
+$ git reset HEAD UNDO.md
+Unstaged changes after reset:
+M	UNDO.md
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   UNDO.md
+
+
+$ git status -s
+?? UNDO.md
+```
+
+### Unmodifying a Modified File
+
+
+What if you realize that you don’t want to keep your changes to the CONTRIBUTING.md file? How can you easily unmodify it — revert it back to what it looked like when you last committed
