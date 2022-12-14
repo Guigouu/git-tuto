@@ -37,3 +37,68 @@ Everything in Git in checksummed before it is stored and is then referred to by 
 ![snpashots](/images/git-log.png)
 
 This means it’s impossible to change the contents of any file or directory without Git knowing about it. This functionality is built into Git at the lowest levels and is integral to its philosophy. You can’t lose information in transit or get file corruption without Git being able to detect it.
+
+
+##### The Three States
+
+- Modified means that you have changed the file but have not committed it to your database yet.
+
+- Staged means that you have marked a modified file in its current version to go into your next commit snapshot.
+
+- Committed means that the data is safely stored in your local database.
+
+
+```
+$ echo 'My Project' > README
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+    README
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+Untracked basically means that Git sees a file you didn’t have in the previous snapshot (commit), 
+
+```
+$ git add README
+```
+##### Staging Modified Files
+```
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+
+    new file:   README
+```
+```
+echo "My contribution" >> README
+
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+    modified:   README
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   README
+```
+
+##### Short Status
+
+```
+$ git status -s
+ M README
+MM Rakefile
+A  lib/git.rb
+M  lib/simplegit.rb
+?? LICENSE.txt
+```
