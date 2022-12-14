@@ -137,7 +137,7 @@ GitHub maintains a fairly comprehensive list of good .gitignore file examples fo
 ##### Viewing Your Staged and Unstaged Changes
 If the git status command is too vague for you — you want to know exactly what you changed, not just which files were changed — you can use the git diff command.
 
-![gitdiff](/images/git-diff.png)
+![gitdiff](/images/git-diff.PNG)
 
 That command compares what is in your working directory with what is in your staging area. The result tells you the changes you’ve made that you haven’t yet staged.
 
