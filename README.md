@@ -140,3 +140,85 @@ If the git status command is too vague for you — you want to know exactly 
 ![gitdiff](/images/git-diff.png)
 
 That command compares what is in your working directory with what is in your staging area. The result tells you the changes you’ve made that you haven’t yet staged.
+
+##### Committing Your Changes
+Now that your staging area is set up the way you want it, you can commit your changes. 
+
+Remember that anything that is still unstaged — any files you have created or modified that you haven’t run git add on since you edited them — won’t go into this commit.
+
+```
+git commit
+```
+Alternatively, you can type your commit message inline with the commit command by specifying it after a -m flag, like this
+```
+$ git commit -m "Story 182: fix terraform stack"
+```
+
+##### Skipping the Staging Area
+
+```
+$ git commit -a -m 'Add new benchmar
+
+```
+Adding the -a option to the git commit command makes Git automatically stage every file that is already tracked before doing the commit, letting you skip the git add part
+
+/!\ This is convenient, but be careful; sometimes this flag will cause you to include unwanted changes.
+
+
+##### Removing Files
+
+To remove a file from Git, you have to remove it from your tracked files and then commit. 
+If you simply remove the file from your working directory, it shows up under the “Changes not staged for commit” (that is, unstaged) area of your git status output:
+
+```
+$ rm PROJECTS.md
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    PROJECTS.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+Then, if you run git rm, it stages the file’s removal:
+
+```
+
+$ git rm PROJECTS.md
+rm 'PROJECTS.md'
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    deleted:    PROJECTS.md
+```
+The next time you commit, the file will be gone and no longer tracked.
+
+__You may want to keep the file on your hard drive but not have Git track it anymore.__
+if you forgot to add something to your .gitignore file and accidentally staged it, like a large log file or a bunch of .a compiled files.
+```
+$ git rm --cached README
+```
+##### Moving Files
+
+```
+$ git mv README.md README
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    renamed:    README.md -> README
+```
+However, this is equivalent to running something like this:
+```
+$ mv README.md README
+$ git rm README.md
+$ git add README
+```
