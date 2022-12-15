@@ -507,6 +507,7 @@ git merge iss53
 ```
 In Git, there are two main ways to integrate changes from one branch into another: the *merge* and the *rebase*. In this section you’ll learn what rebasing is, how to do it, why it’s a pretty amazing tool, and in what cases you won’t want to use it.
 
+/!\ Do not rebase commits that exist outside your repository and that people may have based work on.
 
 
 ### 2.1.7 Stashing and Cleaning:
