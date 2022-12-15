@@ -70,6 +70,7 @@ $ git add README
 ```
 ## 2. Basic Operations
 ### 2.0.1 Staging Modified Files
+![lifecycle](./images/lifecycle.png)
 ```
 $ git status
 On branch master
@@ -161,7 +162,7 @@ $ git commit -m "Story 182: fix terraform stack"
 ### 2.0.6 Skipping the Staging Area
 
 ```
-$ git commit -a -m 'Add new benchmar
+$ git commit -a -m 'Add new file'
 
 ```
 Adding the -a option to the git commit command makes Git automatically stage every file that is already tracked before doing the commit, letting you skip the git add part
