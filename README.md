@@ -591,4 +591,12 @@ Unpacking objects: 100% (11/11), done.
 Checking connectivity... done.
 ```
 
-mypassword2
+### 2.2.0 Hooks:
+
+The hooks are all stored in the hooks subdirectory of the Git directory. In most projects, that’s .git/hooks. When you initialize a new repository with git init.
+
+```
+test: put your m y p a s s w o r d here
+```
+
+![question](./images/may-the-questions.jpg)

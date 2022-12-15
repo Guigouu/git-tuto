@@ -1,3 +1,3 @@
 [submodule "images/git-submodule"]
-	path = images/git-submodule
+	path = git-submodule
 	url = https://github.com/Guigouu/git-submodule
