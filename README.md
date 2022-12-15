@@ -481,6 +481,10 @@ git log --oneline --decorate
 ```
 git checkout testing
 ```
+```
+# After some modification, create the tracking remote branch
+ git push --set-upstream origin testing
+```
 
 ### Merge vs Rebase:
 
