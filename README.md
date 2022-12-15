@@ -3,7 +3,7 @@
 This project resum important informations from git book. 
 https://git-scm.com/book
 ## What is Git ?
-### 1. Git vs VCS
+### 1. Git
 Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
 Git stores and thinks about information in a very different way, and understanding these differences will help you avoid becoming confused while using it.
