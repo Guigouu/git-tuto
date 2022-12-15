@@ -15,7 +15,7 @@ Storing data as changes to a base version of each file
 
 Git thinks of its data more like a series of snapshots of a miniature filesystem. With Git, every time you commit, or save the state of your project Git takes a pcitore of what all your file like at the moment and stores a reference to that snapshot.
 So, when files have not changed, Git reference it from the previous version.
-It is tipycally a *stream of snapshot*. Very effecient !
+It is typically a *stream of snapshot*. Very efficient !
 
 ![snpashots](/images/snapshots.png)
 
