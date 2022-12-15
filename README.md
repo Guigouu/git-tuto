@@ -2,13 +2,12 @@
 
 This project resum important informations from git book. 
 https://git-scm.com/book
-## Git scenariis 
-### What is Git ?
-#### Git vs VCS
+## What is Git ?
+### Git vs VCS
 
 Git stores and thinks about information in a very different way, and understanding these differences will help you avoid becoming confused while using it.
 
-##### Snaphots, not differences:
+#### Snaphots, not differences:
 
 ![delta](./images/deltas.png)
 
@@ -23,7 +22,7 @@ It is tipycally a *stream of snapshot*. Very effecient !
 Storing data as snapshots of the project over time
 
 
-##### Every Operation Is Local:
+#### Every Operation Is Local:
 
 ```
 git clone git@github.com:Guigouu/git-tuto.git
@@ -34,7 +33,7 @@ You have the entire history of the project right there on your local disk, most 
 So to Browse history of the entire project, git doesn not need to go out to the server.
 Same for the most operations, if you are in a airplane environment you can commit locally and push later. 
 
-##### Git Has Integrity:
+#### Git Has Integrity:
 
 Everything in Git in checksummed before it is stored and is then referred to by that checksum. 
 ![snpashots](/images/git-log.png)
@@ -42,7 +41,7 @@ Everything in Git in checksummed before it is stored and is then referred to by 
 This means it’s impossible to change the contents of any file or directory without Git knowing about it. This functionality is built into Git at the lowest levels and is integral to its philosophy. You can’t lose information in transit or get file corruption without Git being able to detect it.
 
 
-##### The Three States
+#### The Three States
 
 - Modified means that you have changed the file but have not committed it to your database yet.
 
@@ -68,6 +67,7 @@ Untracked basically means that Git sees a file you didn’t have in the previous
 ```
 $ git add README
 ```
+## Basic Operations
 ### Staging Modified Files
 ```
 $ git status
@@ -318,7 +318,7 @@ git log --since=2.weeks
 git log --pretty="%h - %s" --author='Guillaume NAIRI' --since="2022-08-01" --no-merges
 ```
 
-### Git Basics - Undoing Things
+### Undoing Things
 At any stage, you may want to undo something. 
 One of the common undos takes place when you commit too early and possibly forget to add some files, or you mess up your commit message. If you want to redo that commit, make the additional changes you forgot, stage them, and commit again using the --amend option:
 
