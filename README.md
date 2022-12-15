@@ -505,6 +505,10 @@ git add MERGE-CONFLICT.md
 git commit -am "Not possible"
 git merge iss53
 ```
+In Git, there are two main ways to integrate changes from one branch into another: the *merge* and the *rebase*. In this section you’ll learn what rebasing is, how to do it, why it’s a pretty amazing tool, and in what cases you won’t want to use it.
+
+
+
 ### 2.1.7 Stashing and Cleaning:
 Often, when you’ve been working on part of your project, things are in a messy state and you want to switch branches for a bit to work on something else. The problem is, you don’t want to do a commit of half-done work just so you can get back to this point later. The answer to this issue is the git stash command.
 
