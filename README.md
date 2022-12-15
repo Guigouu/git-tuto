@@ -11,12 +11,15 @@ Git stores and thinks about information in a very different way, and understandi
 ##### Snaphots, not differences:
 
 ![delta](./images/deltas.png)
+
 Storing data as changes to a base version of each file
 
 Git thinks of its data more like a series of snapshots of a miniature filesystem. With Git, every time you commit, or save the state of your project Git takes a pcitore of what all your file like at the moment and stores a reference to that snapshot.
 So, when files have not changed, Git reference it from the previous version.
-It is tipycally a *stream of snapshot*. Very effecient ! 
+It is tipycally a *stream of snapshot*. Very effecient !
+
 ![snpashots](/images/snapshots.png)
+
 Storing data as snapshots of the project over time
 
 
@@ -374,8 +377,174 @@ Changes not staged for commit:
 $ git status -s
 ?? UNDO.md
 ```
+Restore file after delete:
+```
+git rm UNDO.md
+# Unstaged
+git reset HEAD UNDO.md
+# Restor
+git checkout -- UNDO.md
+```
 
 ### Unmodifying a Modified File
 
 
 What if you realize that you don’t want to keep your changes to the CONTRIBUTING.md file? How can you easily unmodify it — revert it back to what it looked like when you last committed
+```
+$ cat UNDO.md
+```
+
+```
+$ echo "Modification to UNDO" >> UNDO.md
+$ git status
+$ git restore UNDO.md
+$ cat UNDO.md
+```
+
+/!\ Dangerous command, any local changes you made to that file are gone after
+
+
+## Git Basics - Tagging
+
+ Git has the ability to tag specific points in a repository’s history
+ Typically, people use this functionality to mark release points (v1.0, v2.0...)
+```
+$ git tag
+v1.0
+v2.0
+
+```
+
+```
+
+$ git show v2.5.0
+tag v2.5.0
+Tagger: Guillaume NAIRI <gnairi@mantu.com>
+Date:   Wed Oct 5 14:37:51 2022 +0000
+
+- FEATURE: Add dhcp_hook to force o2f-it.com use for Linux in Azure 
+  - Migrate swapmount to tasks from remote-swapmount role 
+  - Add molecule scenario E5
+FIXE: 
+  - Disable reddog.microsoft.com by default to replace by o2f-it.com on DHCPREQUEST and reboot
+  - Overwrite the function make_dhcp
+  - Trigger dhcp domain name and search through hook script
+  - Migrate Install and Remove swapmount tasks from role swapmount to common 
+  - Resync molecule test E5
+commit 2f3a78166a69f4105828f3fbfaab4f8d399bc770 (tag: v2.5.0)
+Author: Guillaume NAIRI <gnairi@mantu.com>
+Date:   Wed Oct 5 14:37:21 2022 +0000
+
+    Merged PR 981: v2.5.0
+    
+    CHANGE FROM v2.4.1
+      - FEATURE: Add dhcp_hook to force o2f-it.com use for Linux in Azure
+      - Migrate swapmount to tasks from remote-swapmount role
+      - Add molecule scenario E5
+    FIXE:
+      - Disable reddog.microsoft.com by default to replace by o2f-it.com on DHCPREQUEST and reboot
+      - Overwrite the function make_dhcp
+      - Trigger dhcp domain name and search through hook script
+      - Migrate Install and Remove swapmount tasks from role swapmount to common
+      - Resync molecule test E5
+
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 7e44846..f7b233b 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -1,3 +1,15 @@
++# v2.5.0
++CHANGE FROM v2.4.1  
++  - FEATURE: Add dhcp_hook to force o2f-it.com use for Linux in Azure 
++  - Migrate swapmount to tasks from remote-swapmount role 
++  - Add molecule scenario E5
+```
+Creating a tag:
+
+```
+git tag -a v1.4 -m "my version 1.4"
+git tag
+git push origin v1.4 #or
+git push origin --tags
+```
+
+### GIT Branch:
+Create a branch:
+
+```
+git branch testing
+```
+where the branch poiunters are pointing:
+```
+git log --oneline --decorate
+```
+```
+git checkout testing
+```
+
+### Merge vs Rebase:
+
+### Git Tools - Stashing and Cleaning:
+Often, when you’ve been working on part of your project, things are in a messy state and you want to switch branches for a bit to work on something else. The problem is, you don’t want to do a commit of half-done work just so you can get back to this point later. The answer to this issue is the git stash command.
+
+### Stashing Your Work
+```
+$ git status
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   UNDO.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   README.md
+```
+```
+$ git stash
+Saved working directory and index state \
+  "WIP on master: 049d078 Create UNDO.md"
+HEAD is now at 049d078 Create UNDO.md
+(To restore them type "git stash apply")
+```
+
+```
+$ git status
+# On branch master
+nothing to commit, working directory clean
+```
+```
+ git stash list
+stash@{0}: WIP on master: 049d078 Create UNDO.md
+stash@{1}: WIP on master: c264051 Revert "README.md"
+stash@{2}: WIP on master: 21d80a5 Add colloboration
+```
+
+And if you want to apply again:
+```
+$ git stash apply
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   README.md
+	modified:   UNDO.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+### Git submodule
+
+It often happens that while working on one project, you need to use another project from within it. Perhaps it’s a library that a third party developed or that you’re developing separately and using in multiple parent projects. A common issue arises in these scenarios: you want to be able to treat the two projects as separate yet still be able to use one from within the other.
+
+```
+$ git submodule add https://github.com/Guigouu/git-submodule
+Cloning into 'DbConnector'...
+remote: Counting objects: 11, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 11 (delta 0), reused 11 (delta 0)
+Unpacking objects: 100% (11/11), done.
+Checking connectivity... done.
+```
