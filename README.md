@@ -3,11 +3,12 @@
 This project resum important informations from git book. 
 https://git-scm.com/book
 ## What is Git ?
-### Git vs VCS
+### 1. Git vs VCS
+Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
 Git stores and thinks about information in a very different way, and understanding these differences will help you avoid becoming confused while using it.
 
-#### Snaphots, not differences:
+#### 1.1 Snaphots, not differences:
 
 ![delta](./images/deltas.png)
 
@@ -22,7 +23,7 @@ It is typically a *stream of snapshot*. Very efficient !
 Storing data as snapshots of the project over time
 
 
-#### Every Operation Is Local:
+#### 1.2 Every Operation Is Local:
 
 ```
 git clone git@github.com:Guigouu/git-tuto.git
@@ -33,7 +34,7 @@ You have the entire history of the project right there on your local disk, most 
 So to Browse history of the entire project, git doesn not need to go out to the server.
 Same for the most operations, if you are in a airplane environment you can commit locally and push later. 
 
-#### Git Has Integrity:
+#### 1.3 Git Has Integrity:
 
 Everything in Git in checksummed before it is stored and is then referred to by that checksum. 
 ![snpashots](/images/git-log.png)
@@ -41,7 +42,7 @@ Everything in Git in checksummed before it is stored and is then referred to by 
 This means it’s impossible to change the contents of any file or directory without Git knowing about it. This functionality is built into Git at the lowest levels and is integral to its philosophy. You can’t lose information in transit or get file corruption without Git being able to detect it.
 
 
-#### The Three States
+#### 1.4 The Three States
 
 - Modified means that you have changed the file but have not committed it to your database yet.
 
@@ -67,8 +68,8 @@ Untracked basically means that Git sees a file you didn’t have in the previous
 ```
 $ git add README
 ```
-## Basic Operations
-### Staging Modified Files
+## 2. Basic Operations
+### 2.0.1 Staging Modified Files
 ```
 $ git status
 On branch master
@@ -95,7 +96,7 @@ Changes not staged for commit:
     modified:   README
 ```
 
-### Short Status
+### 2.0.2 Short Status
 
 ```
 $ git status -s
@@ -108,7 +109,7 @@ M  lib/simplegit.rb
 - New files that have been added to the staging area have an A
 - Modified files have an M and so on. 
 
-### Ignoring Files
+### 2.0.3 Ignoring Files
 ```
 $ cat .gitignore
 # Compiled files
@@ -137,14 +138,14 @@ terraform.tfvars
 GitHub maintains a fairly comprehensive list of good .gitignore file examples for dozens of projects and languages at https://github.com/github/gitignore if you want a starting point for your project.
 
 
-### Viewing Your Staged and Unstaged Changes
+### 2.0.4 Viewing Your Staged and Unstaged Changes
 If the git status command is too vague for you — you want to know exactly what you changed, not just which files were changed — you can use the git diff command.
 
 ![gitdiff](/images/git-diff.PNG)
 
 That command compares what is in your working directory with what is in your staging area. The result tells you the changes you’ve made that you haven’t yet staged.
 
-### Committing Your Changes
+### 2.0.5 Committing Your Changes
 Now that your staging area is set up the way you want it, you can commit your changes. 
 
 Remember that anything that is still unstaged — any files you have created or modified that you haven’t run git add on since you edited them — won’t go into this commit.
@@ -157,7 +158,7 @@ Alternatively, you can type your commit message inline with the commit command b
 $ git commit -m "Story 182: fix terraform stack"
 ```
 
-### Skipping the Staging Area
+### 2.0.6 Skipping the Staging Area
 
 ```
 $ git commit -a -m 'Add new benchmar
@@ -168,7 +169,7 @@ Adding the -a option to the git commit command makes Git automatically stage eve
 /!\ This is convenient, but be careful; sometimes this flag will cause you to include unwanted changes.
 
 
-### Removing Files
+### 2.0.7 Removing Files
 
 To remove a file from Git, you have to remove it from your tracked files and then commit. 
 If you simply remove the file from your working directory, it shows up under the “Changes not staged for commit” (that is, unstaged) area of your git status output:
@@ -207,7 +208,7 @@ if you forgot to add something to your .gitignore file and accidentally staged i
 ```
 $ git rm --cached README
 ```
-### Moving Files
+### 2.0.8 Moving Files
 
 ```
 $ git mv README.md README
@@ -226,7 +227,7 @@ $ git rm README.md
 $ git add README
 ```
 
-### Viewing the Commit History
+### 2.0.9 Viewing the Commit History
 ```
 $ git clone https://github.com/schacon/simplegit-progit
 ```
@@ -309,7 +310,7 @@ git log --pretty=format:"%h - %an, %ar : %s"
 ```
 git log --pretty=format:"%h %s" --graph
 ```
-### Limiting Log Output
+### 2.1.0 Limiting Log Output
 
 ```
 git log --since=2.weeks
@@ -318,7 +319,7 @@ git log --since=2.weeks
 git log --pretty="%h - %s" --author='Guillaume NAIRI' --since="2022-08-01" --no-merges
 ```
 
-### Undoing Things
+### 2.1.1 Undoing Things
 At any stage, you may want to undo something. 
 One of the common undos takes place when you commit too early and possibly forget to add some files, or you mess up your commit message. If you want to redo that commit, make the additional changes you forgot, stage them, and commit again using the --amend option:
 
@@ -338,7 +339,7 @@ git log -p -1
 ```
 
 
-### Unstaging a Staged File
+### 2.1.2 Unstaging a Staged File
 
 
 You accidentally type git add * and you wanted commit two files separatly:
@@ -386,7 +387,7 @@ git reset HEAD UNDO.md
 git checkout -- UNDO.md
 ```
 
-### Unmodifying a Modified File
+### 2.1.3 Unmodifying a Modified File
 
 
 What if you realize that you don’t want to keep your changes to the CONTRIBUTING.md file? How can you easily unmodify it — revert it back to what it looked like when you last committed
@@ -404,7 +405,7 @@ $ cat UNDO.md
 /!\ Dangerous command, any local changes you made to that file are gone after
 
 
-## Git Basics - Tagging
+### 2.1.4 Tagging
 
  Git has the ability to tag specific points in a repository’s history
  Typically, people use this functionality to mark release points (v1.0, v2.0...)
@@ -468,7 +469,7 @@ git push origin v1.4 #or
 git push origin --tags
 ```
 
-### GIT Branch:
+### 2.1.5 Branch:
 Create a branch:
 
 ```
@@ -486,7 +487,7 @@ git checkout testing
  git push --set-upstream origin testing
 ```
 
-### Merge vs Rebase:
+### 2.1.6 Merge vs Rebase:
 
 Occasionally, this process doesn’t go smoothly. If you changed the same part of the same file differently in the two branches you’re merging, Git won’t be able to merge them cleanly. If your fix for issue #53 modified the same part of a file as the hotfix branch, you’ll get a merge conflict that looks something like this:
 ![basicmerge](./images/basic-merging-2.png)
@@ -501,10 +502,10 @@ git push --set-upstream origin iss53
 git checkout main
 
 ```
-### Git Tools - Stashing and Cleaning:
+### 2.1.7 Stashing and Cleaning:
 Often, when you’ve been working on part of your project, things are in a messy state and you want to switch branches for a bit to work on something else. The problem is, you don’t want to do a commit of half-done work just so you can get back to this point later. The answer to this issue is the git stash command.
 
-### Stashing Your Work
+### 2.1.8 Stashing Your Work
 ```
 $ git status
 Changes to be committed:
@@ -552,7 +553,7 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-### Git submodule
+### 2.1.9 Submodule
 
 It often happens that while working on one project, you need to use another project from within it. Perhaps it’s a library that a third party developed or that you’re developing separately and using in multiple parent projects. A common issue arises in these scenarios: you want to be able to treat the two projects as separate yet still be able to use one from within the other.
 
