@@ -513,6 +513,19 @@ In Git, there are two main ways to integrate changes from one branch into anothe
 
 Rebase local changes before pushing to clean up your work, but never rebase anything that you’ve pushed somewhere.
 
+![interrebase](./images/interesting-rebase-1.png)
+
+```
+git rebase --onto master server client
+
+git checkout master
+git merge client
+
+git rebase master server
+
+git checkout master
+git merge server
+```
 ### 2.1.7 Stashing and Cleaning:
 Often, when you’ve been working on part of your project, things are in a messy state and you want to switch branches for a bit to work on something else. The problem is, you don’t want to do a commit of half-done work just so you can get back to this point later. The answer to this issue is the git stash command.
 
@@ -577,3 +590,5 @@ remote: Total 11 (delta 0), reused 11 (delta 0)
 Unpacking objects: 100% (11/11), done.
 Checking connectivity... done.
 ```
+
+mypassword
