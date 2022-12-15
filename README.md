@@ -491,8 +491,14 @@ git checkout testing
 Occasionally, this process doesn’t go smoothly. If you changed the same part of the same file differently in the two branches you’re merging, Git won’t be able to merge them cleanly. If your fix for issue #53 modified the same part of a file as the hotfix branch, you’ll get a merge conflict that looks something like this:
 ![basicmerge](./images/basic-merging-2.png)
 ```
-
-
+git branch iss53
+git checkout iss53
+cat MERGE-CONFLICT.md
+echo "I am Root !" > MERGE-CONFLICT.md
+git add MERGE-CONFLICT.md 
+git commit -m "I don't like wood"
+git push --set-upstream origin iss53
+git checkout main
 ```
 ### Git Tools - Stashing and Cleaning:
 Often, when you’ve been working on part of your project, things are in a messy state and you want to switch branches for a bit to work on something else. The problem is, you don’t want to do a commit of half-done work just so you can get back to this point later. The answer to this issue is the git stash command.
