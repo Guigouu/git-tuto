@@ -495,12 +495,15 @@ Occasionally, this process doesn’t go smoothly. If you changed the same part o
 git branch iss53
 git checkout iss53
 cat MERGE-CONFLICT.md
-
+echo "I am root" > MERGE-CONFLICT.md
 git add MERGE-CONFLICT.md 
 git commit -m "I don't like wood"
 git push --set-upstream origin iss53
 git checkout main
-
+echo "I am Groot :')" > MERGE-CONFLICT.md
+git add MERGE-CONFLICT.md 
+git commit -am "Not possible"
+git merge iss53
 ```
 ### 2.1.7 Stashing and Cleaning:
 Often, when you’ve been working on part of your project, things are in a messy state and you want to switch branches for a bit to work on something else. The problem is, you don’t want to do a commit of half-done work just so you can get back to this point later. The answer to this issue is the git stash command.
